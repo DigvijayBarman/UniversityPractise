@@ -24,14 +24,15 @@ int ByName(char *x){		//Function for searching student by Name
 	
 	for(j=0;j<num;j++){
 		if (strcmp(x,stud[j].Name)==0){		//comparing name from parameter with the name in each position in the array
-			return j;							//returning the position at which name was found
+			printf ("Student Name: %s | Roll Number: %d | Course: %s | \n",stud[j].Name,stud[j].RollNo,stud[j].Course);		//Print student details
 			break;
 		}
 		else{
-			return (num+1);				//return value greater than number of students when item not found
+			printf("Name not found...\n");		//Input name not found
 		}
 		
 	}
+	return 0;
 	
 }
 
@@ -41,31 +42,32 @@ int ByRoll(int r){			//Function for searching student by Roll Number
 	
 	for(j=0;j<num;j++){
 		if (r==stud[j].RollNo){		//comparing roll number from parameter with the roll number in each position in the array
-			return j;							//returning the position at which Roll number was found
+			printf ("Student Name: %s | Roll Number: %d | Course: %s | \n",stud[j].Name,stud[j].RollNo,stud[j].Course);		//Print student details
 			break;
 		}
 		else{
-			return (num+1);		//return value greater than number of students when item not found
+				printf("Roll Number not found...\n");		//Input Roll number not found
 		}
 		
 	}
+	return 0;
 }
 
 int ByCourse(char *c){		//Function for searching student by Course
 
-	int j;
+	int j;int k=0;
 	
 	
 	for(j=0;j<num;j++){
 		if (strcmp(c,stud[j].Course)==0){		//comparing course from parameter with the course in each position in the array
-			return j;							//returning the position at which course was found
-			break;
+			printf("Student Name: %s | Roll Number: %d | Course: %s | \n",stud[j].Name,stud[j].RollNo,stud[j].Course);
+			k++;
 		}
-		else{
-			return (num+1);				//return value greater than number of students when item not found
-		}
-		
 	}
+	if(k==0){
+		printf("No Students found...\n");
+		}
+		return 0;
 	
 }
 
@@ -73,7 +75,7 @@ int ByCourse(char *c){		//Function for searching student by Course
 
 int main(){
 	
-	int i,func=0,rn;
+	int i,f=0,rn;
 	char x[50],c[50];		
 	
 	
@@ -103,48 +105,27 @@ int main(){
 	
 	do{
 		printf("\nType the numbers associated to the function to perform: \n1:Search By Roll Number \n2:Search By Name \n3:Search By Course\n0:Exit\n");
-		scanf("Enter number: %d",&func);
-	switch (func){
+		scanf("Enter number: %d",&f);
+	switch (f){
 		case 1:
 			printf("Enter the Roll Number to search: ");		//Input Roll Number to search
    			scanf("%d",&rn);
-   	
-   			if (ByRoll(rn)>num){
-   			printf("Roll Number not found...\n");		//Input Roll number not found
-	  		}
-	   		else{
-	   		printf("Roll number found!\n");
-	   		printf ("Student Name: %s | Roll Number: %d | Course: %s | \n",stud[ByRoll(rn)].Name,stud[ByRoll(rn)].RollNo,stud[ByRoll(rn)].Course);		//Print student details
-	  		 }
+   			ByRoll(rn);
 	   break;
 	   
 	   
 	   case 2:
 	   		printf("Enter the name to search: ");		//Input name to search
    			scanf("%s",&x);
-   	
-   			if (ByName(x)>num){
-   			printf("Name not found...\n");		//Input name not found
-	  		 }
-	   		else{
-	  		printf("Name found!\n");
-	   		printf ("Student Name: %s | Roll Number: %d | Course: %s | \n",stud[ByName(x)].Name,stud[ByName(x)].RollNo,stud[ByName(x)].Course);		//Print student details
-	   		}
+   			ByName(x);
 	   break;
 	   
 	   
 	   case 3:
 	   	printf("Enter the Course name to search: ");		//Input name to search
    		scanf("%s",&c);
-   	
-   			if (ByCourse(c)>num){
-   					printf("Name not found...\n");		//Input name not found
-	  			 }
-	   		else{
-	   			printf("Name found!\n");
-	   			printf ("Student Name: %s | Roll Number: %d | Course: %s | \n",stud[ByCourse(c)].Name,stud[ByCourse(c)].RollNo,stud[ByCourse(c)].Course);		//Print student details
-	   			}
-	   break;
+   		ByCourse(c);
+   		break;
 	   
 	    default:
 	   			printf("\nThank you!\n");
@@ -155,7 +136,7 @@ int main(){
 			
 	}
 	
-}while(func!=0);
+}while(f!=0);
    	
 	   
 	   
